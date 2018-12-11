@@ -1,8 +1,6 @@
 FROM python:3
 
-COPY . /app
-
-WORKDIR /app
+ADD resize.py /
 
 RUN pip install Pillow
 
