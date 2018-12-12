@@ -7,4 +7,4 @@ COPY resize.py /data/
 
 RUN pip install Pillow
 
-CMD ["python", "./resize.py"]
+CMD ["python", "resize.py"]
