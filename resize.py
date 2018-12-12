@@ -3,7 +3,7 @@ from PIL import Image
 
 
 #storing list of image files in dirs variable
-path = "/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/images/"
+path = "./ images/"
 dirs = os.listdir(path)
 
 #creates path for resized image files
