@@ -1,9 +1,7 @@
 FROM python:3
 
-WORKDIR /hmccalpin/src/data/
-COPY images/ .
-COPY sample_labels.csv .
-COPY resize.py .
+COPY . /app
+WORKDIR /app
 
 RUN pip install Pillow
 
