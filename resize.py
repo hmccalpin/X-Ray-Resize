@@ -3,7 +3,7 @@ from PIL import Image
 
 
 #storing list of image files in dirs variable
-path = "./images/"
+path = "hmccalpin/src/data/images/"
 dirs = os.listdir(path)
 
 #creates path for resized image files
