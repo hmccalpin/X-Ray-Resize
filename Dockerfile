@@ -1,7 +1,8 @@
 FROM python:3
 
-COPY Users/hmccalpin/Kaggle_Xray_dataset/images/ /data/images/
-COPY Users/hmccalpin/Kaggle_Xray_dataset/sample_labels.csv /data/sample_labels.csv
+WORKDIR hmccalpin/src/data
+COPY images/ /data/
+COPY sample_labels.csv /data/
 
 ADD resize.py /
 
