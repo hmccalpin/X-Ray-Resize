@@ -5,14 +5,14 @@ metadata:
 spec:
   replicas: 1
   template:
-  metadata:
-    labels:
-      k8s-app: resize
-  spec:
-    containers:
-    - name: resize
-      image: resize:latest
-      imagePullPolicy: "IfNotPresent"
-      ports:
-      - containerPort: 5035
+    metadata:
+      labels:
+        k8s-app: resize
+    spec:
+      containers:
+      - name: resize
+        image: resize:latest
+        imagePullPolicy: "IfNotPresent"
+        ports:
+        - containerPort: 5035
 
