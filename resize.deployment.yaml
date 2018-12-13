@@ -16,10 +16,4 @@ spec:
       imagePullPolicy: "IfNotPresent"
       ports:
       - containerPort: 5035
-      '''volumeMounts:
-        - mountPath: /resize-data
-          name: resize
-     volumes: 
-         - name: <name of application>
-           persistentVolumeClaim:
-             claimName: appclaim1'''
+
