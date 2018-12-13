@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: resize
-        image: resize:latest
+        image: resize
         imagePullPolicy: "IfNotPresent"
         ports:
         - containerPort: 5035
