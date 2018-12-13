@@ -7,3 +7,7 @@ metadata:
   namespace: resize
 spec:
   type: NodePort
+  ports:
+  - port: 5035
+  selector:
+  k8s-app: resize
