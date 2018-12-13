@@ -4,7 +4,6 @@ metadata:
   labels:
     k8s-app: resize
   name: resize
-  namespace: resize
 spec:
   type: NodePort
   ports:
