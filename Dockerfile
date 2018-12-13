@@ -2,10 +2,10 @@
 FROM python:3
 
 #Set the working directory to /app
-WORKDIR /app
+WORKDIR /resize
 
 # Copy contents of current directory into container /app  
-COPY . /app
+COPY . /resize
 
 RUN pip install Pillow
 
