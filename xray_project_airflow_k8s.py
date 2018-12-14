@@ -27,7 +27,7 @@ for item in dirs:
     resize_image = KubernetesPodOperator(namespace='default',
                                     image="resize:latest",
                                     cmds=["Python","resize.py"],
-                                    arguments=["resize('item')"],
+                                    arguments=["resize(item)"],
                                     labels={"foo": "bar"},
                                     name="resize_k8s",
                                     task_id="resize-task",
