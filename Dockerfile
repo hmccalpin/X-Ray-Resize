@@ -1,5 +1,5 @@
 #Use Python 3 as parent image
-FROM python:3
+FROM python:3.6
 
 #Set the working directory to /app
 WORKDIR /resize
@@ -12,4 +12,4 @@ RUN pip install Pillow
 EXPOSE 5035
 
 #run resize.py when container launches
-CMD ["python", "resize.py"]
+CMD ["python", "resize.py", "resize(image)"]
