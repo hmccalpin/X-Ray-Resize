@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: resize
-        image: localhost:resize
+        image: localhost:5000/my-resize
         imagePullPolicy: "IfNotPresent"
         ports:
         - containerPort: 5035
