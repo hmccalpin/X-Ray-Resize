@@ -1,5 +1,6 @@
 import datetime as dt
 from airflow import DAG
+import os
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 
 path =  path = "/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/images/"
@@ -16,21 +17,22 @@ default_args = {
     #'depends_on_past': True
 }
 
+
+with DAG('xray_project_airflow_k8s',
+         default_args=default_args,
+         schedule_interval='0 * * * *',         
+         max_active_runs = 1
+         ) as dag:
+
+
 for item in dirs:
-
-    with DAG('xray_project_airflow_k8s',
-             default_args=default_args,
-             schedule_interval='0/5 * * * *',         #runs every 5 min
-             max_active_runs = 1
-             ) as dag:
-
     resize_image = KubernetesPodOperator(namespace='default',
                                         image="localhost:5000/my-resize",
                                         cmds=["Python","resize.py"],
                                         arguments=["resize(item)"],
                                         labels={"foo": "bar"},
                                         name="resize_k8s",
-                                        task_id="resize-task",
+                                        task_id="resize" + item,
                                         get_logs=True,
                                         dag=dag
                                         )
