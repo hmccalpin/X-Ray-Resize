@@ -32,7 +32,7 @@ with DAG('xray_project_airflow_k8s',
             cmds=["Python","resize.py"],
             arguments=["resize(item)"],
             labels={"foo": "bar"},
-            name="resize_k8s",
+            name="resize-k8s",
             task_id="resize" + item,
             get_logs=True,
             dag=dag
