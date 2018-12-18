@@ -1,13 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: resize
+  name: my-resize
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        k8s-app: resize
+        k8s-app: my-resize
     spec:
       containers:
       - name: resize
