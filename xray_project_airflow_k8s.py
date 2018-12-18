@@ -25,13 +25,13 @@ for item in dirs:
          ) as dag:
          
         resize_image = KubernetesPodOperator(namespace='default',
-                                    image="localhost:5000/my-resize",
-                                    cmds=["Python","resize.py"],
-                                    arguments=["resize(item)"],
-                                    labels={"foo": "bar"},
-                                    name="resize_k8s",
-                                    task_id="resize-task",
-                                    get_logs=True,
-                                    dag=dag
-                                    )
-        resized_counter += 1                                
+                                            image="localhost:5000/my-resize",
+                                            cmds=["Python","resize.py"],
+                                            arguments=["resize(item)"],
+                                            labels={"foo": "bar"},
+                                            name="resize_k8s",
+                                            task_id="resize-task",
+                                            get_logs=True,
+                                            dag=dag
+                                            )
+    resized_counter += 1                                
