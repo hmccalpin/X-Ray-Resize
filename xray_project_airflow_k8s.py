@@ -19,11 +19,11 @@ default_args = {
 for item in dirs:
 
     with DAG('xray_project_airflow_k8s',
-         default_args=default_args,
-         schedule_interval='0/5 * * * *',         #runs every 5 min
-         max_active_runs = 1
-         ) as dag:
-         
+             default_args=default_args,
+             schedule_interval='0/5 * * * *',         #runs every 5 min
+             max_active_runs = 1
+             ) as dag:
+
         resize_image = KubernetesPodOperator(namespace='default',
                                             image="localhost:5000/my-resize",
                                             cmds=["Python","resize.py"],
