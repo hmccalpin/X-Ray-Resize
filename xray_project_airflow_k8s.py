@@ -25,7 +25,7 @@ for item in dirs:
          ) as dag:
          
     resize_image = KubernetesPodOperator(namespace='default',
-                                    image="localhost:5000/myresize",
+                                    image="localhost:5000/my-resize",
                                     cmds=["Python","resize.py"],
                                     arguments=["resize(item)"],
                                     labels={"foo": "bar"},
