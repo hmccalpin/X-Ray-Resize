@@ -13,8 +13,8 @@ default_args = {
     'start_date': dt.datetime(2018, 12, 11),
     'retries': 1,
     'retry_delay': dt.timedelta(minutes=5)
-    #'wait_for_downstream': True,
-    #'depends_on_past': True
+    'wait_for_downstream': True,
+    'depends_on_past': True
 }
 
 
@@ -25,15 +25,15 @@ with DAG('xray_project_airflow_k8s',
          ) as dag:
 
 
-for item in dirs:
-    resize_image = KubernetesPodOperator(namespace='default', 
-                                        image="localhost:5000/my-resize",
-                                        cmds=["Python","resize.py"],
-                                        arguments=["resize(item)"],
-                                        labels={"foo": "bar"},
-                                        name="resize_k8s",
-                                        task_id="resize" + item,
-                                        get_logs=True,
-                                        dag=dag
-                                        )
-    resized_counter += 1                                
+    for item in dirs:
+        resize_image = KubernetesPodOperator(namespace='default', 
+                                            image="localhost:5000/my-resize",
+                                            cmds=["Python","resize.py"],
+                                            arguments=["resize(item)"],
+                                            labels={"foo": "bar"},
+                                            name="resize_k8s",
+                                            task_id="resize" + item,
+                                            get_logs=True,
+                                            dag=dag
+                                            )
+        resized_counter += 1                                
