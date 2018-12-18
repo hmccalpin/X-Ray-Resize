@@ -23,17 +23,15 @@ with DAG('xray_project_airflow_k8s',
          schedule_interval='0 * * * *',         
          max_active_runs = 1
          ) as dag:
-
-
     for item in dirs:
-            resize_image = KubernetesPodOperator(namespace='default', 
-                                                image="localhost:5000/my-resize",
-                                                cmds=["Python","resize.py"],
-                                                arguments=["resize(item)"],
-                                                labels={"foo": "bar"},
-                                                name="resize_k8s",
-                                                task_id="resize" + item,
-                                                get_logs=True,
-                                                dag=dag
-                                                )
+        resize_image = KubernetesPodOperator(namespace='default', 
+                                            image="localhost:5000/my-resize",
+                                            cmds=["Python","resize.py"],
+                                            arguments=["resize(item)"],
+                                            labels={"foo": "bar"},
+                                            name="resize_k8s",
+                                            task_id="resize" + item,
+                                            get_logs=True,
+                                            dag=dag
+                                            )
             #resized_counter += 1                                
