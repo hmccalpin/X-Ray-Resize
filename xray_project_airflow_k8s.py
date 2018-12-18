@@ -14,8 +14,7 @@ default_args = {
     'start_date': dt.datetime(2018, 12, 11),
     'retries': 1,
     'retry_delay': dt.timedelta(minutes=5),
-    'wait_for_downstream': True,
-    'depends_on_past': True
+    #'wait_for_downstream': True
 }
 
 
