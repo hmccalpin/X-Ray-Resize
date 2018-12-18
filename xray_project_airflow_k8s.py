@@ -24,7 +24,7 @@ for item in dirs:
          max_active_runs = 1
          ) as dag:
          
-    resize_image = KubernetesPodOperator(namespace='default',
+        resize_image = KubernetesPodOperator(namespace='default',
                                     image="localhost:5000/my-resize",
                                     cmds=["Python","resize.py"],
                                     arguments=["resize(item)"],
@@ -34,4 +34,4 @@ for item in dirs:
                                     get_logs=True,
                                     dag=dag
                                     )
-    resized_counter += 1                                
+        resized_counter += 1                                
