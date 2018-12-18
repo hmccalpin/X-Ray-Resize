@@ -1,5 +1,6 @@
 import datetime as dt
 from airflow import DAG
+from airflow import models
 import os
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
 
