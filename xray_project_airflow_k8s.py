@@ -36,4 +36,4 @@ with DAG('xray_project_airflow_k8s',
                                                 get_logs=True,
                                                 dag=dag
                                                 )
-            resized_counter += 1                                
+            #resized_counter += 1                                
