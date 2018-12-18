@@ -3,7 +3,7 @@ kind: Service
 metadata:
   labels:
     k8s-app: resize
-  name: resize
+  name: k8s-resize
 spec:
   type: NodePort
   ports:
