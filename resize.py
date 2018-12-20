@@ -3,9 +3,10 @@ from PIL import Image
 import sys
 import logging
 
-im = Image.open(sys.argv[2])
-imResize = im.resize((200,200), Image.ANTIALIAS)
+def resize(img_id):
+  im = Image.open(img_id)
+  imResize = im.resize((200,200), Image.ANTIALIAS)
 
-logging.info('resized image: {}'.format(im))
+  logging.info('resized image: {}'.format(im))
 
-return(im)
+  return(im)
