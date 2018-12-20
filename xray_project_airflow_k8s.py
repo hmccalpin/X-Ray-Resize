@@ -27,7 +27,7 @@ with DAG('xray_project_airflow_k8s',
     for item in dirs:
         
         resizeimg=KubernetesPodOperator(namespace='default', 
-            image="127.0.0.1:5000/my-resize",
+            image="localhost:5000/my-resize",
             cmds=["python","resize.py"],
             arguments=["resize(item"],
             labels={"foo": "bar"},
