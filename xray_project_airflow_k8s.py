@@ -27,7 +27,7 @@ with DAG('xray_project_airflow_k8s',
     for item in dirs:
         
         resizeimg=KubernetesPodOperator(namespace='default', 
-                                        task_id="resize" + item
+                                        task_id="resize" + item,
                                         name="resize-k8s",
                                         namespace="default",
                                         image="127.0.0.1:5000/my-resize",
