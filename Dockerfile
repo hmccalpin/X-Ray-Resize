@@ -12,4 +12,4 @@ RUN pip install Pillow
 EXPOSE 5035
 
 #run resize.py when container launches
-CMD ["python", "resize.py", "resize(image)"]
+CMD ["python", "resize.py"]
