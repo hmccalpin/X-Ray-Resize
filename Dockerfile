@@ -5,7 +5,7 @@ FROM python:3.6
 WORKDIR /resize
 
 # Copy contents of current directory into container /resize  
-COPY . /resize
+COPY /Users/hmccalpin/Desktop/X-Ray-Resize/ /resize
 
 RUN pip install Pillow
 
