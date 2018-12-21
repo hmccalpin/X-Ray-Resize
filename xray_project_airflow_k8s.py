@@ -31,7 +31,7 @@ with DAG('xray_project_airflow_k8s',
                                         name="resize-k8s",
                                         image="127.0.0.1:5000/my-resize",
                                         cmds=["python","resize.py"],
-                                        arguments=[item],
+                                        arguments=["cat /Users/hmccalping/Desktop/Kaggle_Xray_Dataset/images/{}'.format(item)],
                                         labels={"foo": "bar"},
                                         get_logs=True,
                                         dag=dag
