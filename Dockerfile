@@ -2,14 +2,14 @@
 FROM python:3.6
 
 #Set the working directory to /resize
-WORKDIR /resize
+WORKDIR /resize-app
 
 # Copy contents of current directory into container /resize  
-COPY /Users/hmccalpin/Desktop/X-Ray-Resize/ /resize
+COPY  resize.py .
 
 RUN pip install Pillow
 
-EXPOSE 5035
+ENTRYPOINT ["python", resize.py"]
 
 #run resize.py when container launches
-CMD ["python", "resize.py"]
+#CMD ["python", "resize.py"]
