@@ -10,4 +10,4 @@ imResize = im.resize((200,200), Image.ANTIALIAS)
 
 logging.info('resized image: {}'.format(im))
 
-return(im)
+print(im)
