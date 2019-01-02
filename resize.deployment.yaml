@@ -13,5 +13,3 @@ spec:
       - name: resize
         image: 127.0.0.1:5000/my-resize
         imagePullPolicy: "IfNotPresent"
-        ports:
-        - containerPort: 5035
