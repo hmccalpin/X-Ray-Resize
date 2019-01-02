@@ -6,7 +6,5 @@ metadata:
   name: my-resize
 spec:
   type: NodePort
-  ports:
-  - port: 5035
   selector:
     k8s-app: my-resize
