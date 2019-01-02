@@ -10,7 +10,7 @@ ADD resize.py /
 RUN pip install Pillow
 
 #ARG image_ID="/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/images/00000013_005.png"
-ENV IMAGE_ID="/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/test/"
+#ENV IMAGE_ID="/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/test/"
 #ENTRYPOINT ["python", resize.py"]
 
 #run resize.py when container launches
