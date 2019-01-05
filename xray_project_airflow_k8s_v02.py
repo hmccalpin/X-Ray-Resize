@@ -27,25 +27,13 @@ with DAG('xray_project_airflow_k8s_v02',
     
     for item in dirs:
         
-        secret_file = secret.Secret(
-            deploy_type='volume',
-            deploy_target='/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/images/{}'.format(item),
-            secret='airflow-secrets',
-            key='image_id')
-        
-        secret_env = secret.Secret(
-            deploy_type='env',
-            deploy_target='IMAGE_ID',
-            secret='airflow-secrets',
-            key='image_id')
-        
         resizeimg=KubernetesPodOperator(namespace='default', 
                                         task_id="resize-k8s-" + item,
                                         name="resize-k8s",
                                         image="127.0.0.1:5000/my-resize",
                                         cmds=["python","resize.py"],
-                                        #env_vars={'IMAGE_ID': '{{/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/images/{}}}'.format(item)},
-                                        secrets=[secret_env, secret_file],
+                                        env_vars={'IMAGE_ID': '{{/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/images/{}}}'.format(item)},
+                                        #secrets=[secret_env, secret_file],
                                         get_logs=True,
                                         dag=dag
                                         )
