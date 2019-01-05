@@ -3,6 +3,7 @@ from airflow import DAG
 from airflow import models
 import os
 from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOperator
+from airflow.contrib.kubernetes import secret
 
 path =  path = "/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/images/"
 dirs = os.listdir(path)
