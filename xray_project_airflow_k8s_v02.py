@@ -38,6 +38,19 @@ with DAG('xray_project_airflow_k8s_v02',
             }
     }
     volume = Volume(name='test-volume', configs=volume_config)
+    
+    volume_mount_out = VolumeMount('out-volume',
+                           mount_path='/out/',
+                           sub_path=None,
+                           read_only=False)
+
+    volume_config_out = {
+        'hostPath':
+            {
+                'path': '/Users/hmccalpin/Desktop/Kaggle_Xray_Dataset/out/'
+            }
+    }
+    volume_out = Volume(name='out-volume', configs=volume_config_out)
 
     for item in dirs:
 
@@ -48,8 +61,8 @@ with DAG('xray_project_airflow_k8s_v02',
                                         cmds=["python","resize.py"],
                                         env_vars={'IMAGE_ID': '/images/{}'.format(item)},
                                         #secrets=[secret_env, secret_file],
-                                        volumes=[volume],
-                                        volume_mounts=[volume_mount],
+                                        volumes=[volume, volume_out],
+                                        volume_mounts=[volume_mount, volume_mount_out],
                                         get_logs=True,
                                         dag=dag
                                         )
