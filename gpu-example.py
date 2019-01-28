@@ -1,43 +1,37 @@
-import numpy as np
-from timeit import default_timer as timer
-from numba import vectorize
- 
-# This should be a substantially high value. On my test machine, this took
-# 33 seconds to run via the CPU and just over 3 seconds on the GPU.
-NUM_ELEMENTS = 100000000
- 
-# This is the CPU version.
-def vector_add_cpu(a, b):
-  c = np.zeros(NUM_ELEMENTS, dtype=np.float32)
-  for i in range(NUM_ELEMENTS):
-    c[i] = a[i] + b[i]
-  return c
- 
-# This is the GPU version. Note the @vectorize decorator. This tells
-# numba to turn this into a GPU vectorized function.
-@vectorize(["float32(float32, float32)"], target='cuda')
-def vector_add_gpu(a, b):
-  return a + b;
- 
-def main():
-  a_source = np.ones(NUM_ELEMENTS, dtype=np.float32)
-  b_source = np.ones(NUM_ELEMENTS, dtype=np.float32)
- 
-  # Time the CPU function
-  start = timer()
-  vector_add_cpu(a_source, b_source)
-  vector_add_cpu_time = timer() - start
- 
-  # Time the GPU function
-  start = timer()
-  vector_add_gpu(a_source, b_source)
-  vector_add_gpu_time = timer() - start
- 
-  # Report times
-  print("CPU function took %f seconds." % vector_add_cpu_time)
-  print("GPU function took %f seconds." % vector_add_gpu_time)
- 
-  return 0
- 
-if __name__ == "__main__":
-  main()
+# On Titan X (Pascal)
+# 8192 x 8192 matmul took: 0.10 sec, 11304.59 G ops/sec
+# http://stackoverflow.com/questions/41804380/testing-gpu-with-tensorflow-matrix-multiplication
+
+import os
+import sys
+import tensorflow as tf
+import time
+
+n = 8192
+dtype = tf.float32
+with tf.device("/gpu:0"):
+    matrix1 = tf.Variable(tf.ones((n, n), dtype=dtype))
+    matrix2 = tf.Variable(tf.ones((n, n), dtype=dtype))
+    product = tf.matmul(matrix1, matrix2)
+
+
+# avoid optimizing away redundant nodes
+config = tf.ConfigProto(graph_options=tf.GraphOptions(optimizer_options=tf.OptimizerOptions(opt_level=tf.OptimizerOptions.L0)))
+sess = tf.Session(config=config)
+
+sess.run(tf.global_variables_initializer())
+iters = 10
+
+# pre-warming
+sess.run(product.op)
+
+start = time.time()
+for i in range(iters):
+  sess.run(product.op)
+end = time.time()
+ops = n**3 + (n-1)*n**2 # n^2*(n-1) additions, n^3 multiplications
+elapsed = (end - start)
+rate = iters*ops/elapsed/10**9
+print('\n %d x %d matmul took: %.2f sec, %.2f G ops/sec' % (n, n,
+                                                            elapsed/iters,
+                                                            rate,))
